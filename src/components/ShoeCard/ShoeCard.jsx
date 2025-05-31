@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
-import Spacer from '../Spacer';
+import { COLORS, WEIGHTS } from "../../constants";
+import { formatPrice, pluralize, isNewShoe } from "../../utils";
+import Spacer from "../Spacer";
 
 const ShoeCard = ({
   slug,
@@ -31,10 +31,10 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default';
   const actions = {
-    'on-sale': 'Sale',
-    'new-release': 'Just Released!',
-    'default': ''
-  }; 
+    "on-sale": "Sale",
+    "new-release": "Just Released!",
+    default: "",
+  };
   const tagText = actions[variant];
 
   return (
@@ -47,10 +47,10 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price onSale={variant === 'on-sale'}>{formatPrice(price)}</Price>
+          <Price onSale={variant === "on-sale"}>{formatPrice(price)}</Price>
         </Row>
         <Row>
-          <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          <ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
           {salePrice && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
       </Wrapper>
@@ -61,28 +61,29 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-  flex: 1 1 340px;
 `;
 
 const ActionTag = styled.div`
   position: absolute;
   top: 10px;
   right: -4px;
-  padding: 10px;
+  padding: 0 10px;
+  height: 32px;
+  line-height: 32px;
   border-radius: 2px;
   color: ${COLORS.white};
+  background-color: ${(props) =>
+    props.variant === "on-sale" ? COLORS.primary : COLORS.secondary};
+
   font-family: 700;
-  background-color: ${props => props.variant === 'on-sale' 
-  ? COLORS.primary 
-  : COLORS.secondary};
-
+  font-size: ${14 / 16}rem;
 `;
 
-const Wrapper = styled.article`
-`;
+const Wrapper = styled.article``;
 
 const ImageWrapper = styled.div`
   position: relative;
+  border-radius: 16px 16px 4px 4px;
 `;
 
 const Image = styled.img`
@@ -102,7 +103,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
-  text-decoration: ${props => props.onSale ? 'line-through' : 'initial'};
+  text-decoration: ${(props) => (props.onSale ? "line-through" : "initial")};
+  color: ${(props) => (props.onSale ? COLORS.gray[700] : "initial")};
 `;
 
 const ColorInfo = styled.p`

@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 24px;
   font-size: 0.875rem;
-  height: 36px;
+  height: ${36 / 16}rem;
   padding: 0 32px;
   color: ${COLORS.gray[300]};
   background-color: ${COLORS.gray[900]};
